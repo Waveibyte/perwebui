@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="zh-CN" data-edit-key="wave-profile-homepage-v2" data-export-name="Wave哥的地球主页">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Wave哥的个人主页，记录用 AI 把想法变成作品的过程。">
+  <title>Wave哥 · 在自己的轨道上探索</title>
+  <style>
+    :root{--bg:#010828;--cream:#eff4ff;--neon:#9afc47;--line:#ffffff21;--muted:#a3b1cf}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:30px}
+    body{margin:0;background:var(--bg);color:var(--cream);font-family:"PingFang SC","Microsoft YaHei",Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    a:focus-visible,button:focus-visible{outline:3px solid var(--neon);outline-offset:6px}
+    ::selection{background:var(--neon);color:var(--bg)}
+    .wrap{width:min(1180px,88%);margin:auto}
+    .mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.15em;font-size:11px}
+    .muted{color:var(--muted)}
+    .glass{background:#ffffff06;backdrop-filter:blur(14px);border:1px solid #ffffff24;box-shadow:inset 0 1px 0 #ffffff15}
+    .nav{height:112px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:3}
+    .brand{font-size:17px;font-weight:800;letter-spacing:.08em;display:flex;align-items:center;gap:10px}
+    .brand svg{width:26px;height:26px;color:var(--neon)}
+    .navlinks{display:flex;gap:34px;padding:17px 32px;border-radius:36px;font-size:12px}
+    .navlinks a:hover{color:var(--neon)}
+    .nav-note{font-size:10px;letter-spacing:.14em;color:#becae6}
+    .nav-note i,.status i{display:inline-block;background:var(--neon);width:5px;height:5px;border-radius:50%;margin-right:8px}
+    .hero{min-height:790px;height:100svh;max-height:950px;position:relative;overflow:hidden;border-radius:0 0 38px 38px;background:radial-gradient(ellipse at 60% 48%,#102556 0,transparent 67%),var(--bg)}
+    .hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#010828 0%,transparent 24%)}
+    .hero-art{position:absolute;right:-6%;top:46px;width:69%;height:calc(100% - 40px);object-fit:contain;mask-image:linear-gradient(90deg,transparent 0%,black 17%,black 90%,transparent 100%);animation:float 10s ease-in-out infinite}
+    .hero-body{position:relative;z-index:2;padding-top:40px}
+    .eyebrow{display:flex;align-items:center;gap:12px;color:#bbcae9}
+    .eyebrow:before{content:"";display:block;width:26px;height:1px;background:var(--neon)}
+    h1{font-size:clamp(58px,5.7vw,78px);line-height:1.08;letter-spacing:-.055em;font-weight:900;margin:27px 0 8px;max-width:650px}
+    .accent{color:var(--neon);font-family:Georgia,serif;font-size:48px;line-height:1.15;font-style:italic;letter-spacing:-.06em;transform:rotate(-5deg);display:inline-block;margin-left:135px}
+    .hero-copy{max-width:340px;font-size:14px;line-height:1.9;color:#becbe2;margin-top:30px}
+    .hero-actions{display:flex;align-items:center;gap:24px;margin-top:25px}
+    .pill{display:inline-flex;align-items:center;gap:24px;border:1px solid #ffffff40;border-radius:50px;padding:15px 22px;font-size:12px;transition:background .2s,transform .2s}
+    .pill:hover{background:#ffffff18;transform:translateY(-2px)}
+    .pill.primary{background:var(--neon);color:#091422;border-color:var(--neon);font-weight:700}
+    .pill span{font-size:20px;line-height:1}
+    .hero-bottom{position:absolute;z-index:2;bottom:33px;left:6%;right:6%;display:flex;justify-content:space-between;align-items:end}
+    .hero-bottom .line{width:80px;height:3px;background:var(--neon);margin-bottom:14px}
+    .hero-bottom p{margin:0;color:#a6b5d2;font-size:10px}
+    .coordinate{display:grid;gap:7px;text-align:right}
+    .section{padding:110px 0}
+    .section-label{color:var(--neon);margin-bottom:22px}
+    .about{position:relative;background:radial-gradient(ellipse at 20% 35%,#10265088,transparent 60%);border-bottom:1px solid var(--line)}
+    .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:110px;align-items:start}
+    .about h2,.section-head h2{font-size:50px;line-height:1.2;letter-spacing:-.04em;margin:0;font-weight:800}
+    .about h2 em{font-family:Georgia,serif;font-weight:400;color:var(--neon);font-size:65px}
+    .about p{font-size:15px;line-height:2;color:#b7c6df;margin:0 0 24px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tags span{border:1px solid var(--line);padding:8px 13px;border-radius:20px;font-size:11px;color:#b9c9e6}
+    .section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:40px}
+    .section-head .side{font-size:12px;line-height:1.8;color:var(--muted);max-width:260px}
+    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+    .card{border-radius:28px;padding:12px;transition:transform .25s,background .25s;display:flex;flex-direction:column}
+    .card:hover{transform:translateY(-5px);background:#ffffff0d}
+    .card-art{height:245px;border-radius:20px;position:relative;overflow:hidden;display:grid;place-items:center;background:radial-gradient(ellipse at 60% 30%,#1c427d,#071537)}
+    .card-art svg{width:82%;height:82%;overflow:visible}
+    .card:nth-child(2) .card-art{background:radial-gradient(ellipse at 45% 35%,#28484b,#081a2d)}
+    .card:nth-child(3) .card-art{background:radial-gradient(ellipse at 50% 20%,#43457b,#0b1032)}
+    .card-copy{padding:22px 12px 18px}
+    .card-label{font-size:9px;letter-spacing:.1em;color:#9aaecc;margin-bottom:12px}
+    .card h3{font-size:20px;margin:0 0 12px}
+    .card p{font-size:12px;line-height:1.85;color:#9eafcb;margin:0;min-height:66px}
+    .card-bottom{display:flex;justify-content:space-between;align-items:center;padding:0 12px 10px;margin-top:auto}
+    .card-bottom span{font-size:10px;color:var(--neon)}
+    .circle{width:35px;height:35px;background:linear-gradient(135deg,#a89bff,#686db9);border-radius:50%;display:grid;place-items:center}
+    .learning{padding-top:0}
+    .notes{border-top:1px solid var(--line)}
+    .note{padding:27px 0;display:grid;grid-template-columns:70px 1fr 1fr;gap:22px;border-bottom:1px solid var(--line);align-items:center}
+    .note .number{font-size:13px;color:var(--neon);font-family:ui-monospace,monospace}
+    .note h3{font-size:19px;margin:0}
+    .note p{font-size:13px;color:var(--muted);line-height:1.8;margin:0}
+    .final{min-height:430px;border-top:1px solid var(--line);position:relative;overflow:hidden;background:radial-gradient(ellipse at 10% 90%,#183766,transparent 65%)}
+    .final .wrap{padding-top:90px;padding-bottom:70px;position:relative;z-index:1}
+    .final .accent{margin:0 0 10px}
+    .final h2{font-size:48px;letter-spacing:-.04em;line-height:1.3;margin:0 0 24px}
+    .final .ring{position:absolute;width:700px;height:700px;border:1px solid #7897c54d;border-radius:50%;right:-90px;top:-90px;box-shadow:0 0 0 65px #101e430f,0 0 0 66px #7897c525,0 0 0 155px #101e430f,0 0 0 156px #7897c525}
+    .final .ring:after{content:"";position:absolute;top:135px;left:45px;width:23px;height:23px;border-radius:50%;background:var(--neon);box-shadow:0 0 30px #9afc4770}
+    .footer{padding:30px 0 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:25px;color:#8899b8;font-size:10px;line-height:1.8}
+    .footer a{text-decoration:underline;text-underline-offset:3px}
+    .motion-button{background:none;color:#c7d4eb;border:1px solid var(--line);border-radius:20px;padding:7px 12px;cursor:pointer;font-size:10px}
+    .motion-paused .hero-art{animation-play-state:paused}
+    body.editing .hero-art{animation-play-state:paused}
+    .detail{scroll-margin-top:30px}
+    @keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(.7deg)}}
+    @media(min-width:1550px){.hero-art{right:0;width:65%}.hero-body{padding-top:85px}}
+    @media(max-width:800px){
+      .wrap{width:88%}.nav{height:90px}.brand{font-size:14px}.navlinks{gap:16px;padding:12px 18px;font-size:11px}.nav-note{display:none}
+      .hero{height:auto;min-height:1040px;max-height:none}.hero-body{padding-top:32px}h1{font-size:67px;max-width:500px}
+      .hero-art{top:405px;right:-10%;width:110%;height:630px;mask-image:linear-gradient(0deg,transparent,black 15%,black 80%,transparent)}
+      .hero-copy{max-width:330px}.hero-bottom{bottom:25px}.accent{font-size:43px;margin-left:130px}
+      .section{padding:75px 0}.about-grid{gap:40px;grid-template-columns:1fr}.about h2,.section-head h2{font-size:40px}.about h2 em{font-size:52px}
+      .cards{grid-template-columns:1fr}.card{display:grid;grid-template-columns:40% 1fr;gap:8px}.card-art{height:210px;grid-row:span 2}.card-copy{padding:12px 12px 0}.card p{min-height:0}.card-bottom{padding:0 12px 10px}
+      .section-head{gap:22px}.section-head .side{max-width:200px}.note{grid-template-columns:35px 1fr}.note p{grid-column:2}.learning{padding-top:0}.final h2{font-size:38px}.footer{flex-direction:column}.final .ring{right:-450px}
+    }
+    @media(max-width:480px){
+      .wrap{width:88%}.nav{height:80px}.brand{font-size:12px;gap:7px}.brand svg{width:20px;height:20px}.navlinks{padding:10px 14px;gap:14px}.navlinks a:last-child{display:none}
+      .hero{min-height:1040px;border-radius:0 0 24px 24px}.hero-body{padding-top:25px}.eyebrow{font-size:9px;letter-spacing:.1em}
+      h1{font-size:57px;margin-top:24px;line-height:1.12}.accent{font-size:35px;margin-left:83px}.hero-copy{font-size:13px;line-height:1.8;max-width:300px;margin-top:24px}
+      .hero-actions{margin-top:22px;gap:15px}.pill{padding:13px 17px;font-size:11px;gap:15px}.hero-art{top:555px;height:440px;width:122%;right:-15%}
+      .hero-bottom .line{width:40px}.hero-bottom p{font-size:8px;letter-spacing:.07em}.coordinate{font-size:8px;letter-spacing:.08em}
+      .section-head{display:block}.section-head .side{margin-top:20px;max-width:none}.about h2,.section-head h2{font-size:35px}
+      .card{display:flex;padding:10px}.card-art{height:265px}.card-copy{padding:22px 12px 14px}.card h3{font-size:21px}.card p{font-size:13px}.card-bottom{padding-bottom:10px}
+      .note h3{font-size:17px}.final h2{font-size:33px}.final .wrap{padding-top:65px}.final .accent{font-size:39px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <section class="hero" id="home">
+    <img class="hero-art" src="assets/earth-astronaut.png" alt="原创地球与宇航员插画">
+    <div class="wrap">
+      <header class="nav">
+        <a class="brand" href="#home" aria-label="Wave哥主页">
+          <svg viewBox="0 0 30 30" fill="none" aria-hidden="true">
+            <circle cx="15" cy="15" r="8" stroke="currentColor"/>
+            <ellipse cx="15" cy="15" rx="14" ry="5" transform="rotate(-35 15 15)" stroke="currentColor"/>
+            <circle cx="24" cy="6" r="2" fill="currentColor"/>
+          </svg>
+          WAVE.
+        </a>
+        <nav class="navlinks glass" aria-label="主导航">
+          <a href="#about">关于我</a>
+          <a href="#projects">作品</a>
+          <a href="#learning">学习记录</a>
+        </nav>
+        <span class="nav-note mono"><i></i>OPEN TO DISCOVERY</span>
+      </header>
+      <div class="hero-body">
+        <div class="eyebrow mono" data-edit-id="eyebrow">AI · IDEA · ACTIVE</div>
+        <h1 data-edit-id="hero-title">向世界<br>介绍<br>Wave哥。</h1>
+        <div class="accent" data-edit-id="hero-accent">wave planet.</div>
+        <p class="hero-copy" data-edit-id="hero-copy">正在学习用 AI，把脑海里的想法变成作品。<br>这是我的 wave 星球，收藏练习、灵感，<br>以及每一次向前探索的记录。</p>
+        <div class="hero-actions">
+          <a class="pill primary" href="#projects">探索我的作品 <span>↗</span></a>
+          <a class="pill" href="#about">认识一下 <span>↓</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-bottom">
+      <div><div class="line"></div><p class="mono">PERSONAL ORBIT / WAVE</p></div>
+      <div class="coordinate mono"><span>SCROLL TO EXPLORE ↓</span><button class="motion-button" id="motion" type="button" aria-pressed="false">暂停动效</button></div>
+    </div>
+  </section>
+
+  <main>
+    <section class="section about" id="about">
+      <div class="wrap about-grid">
+        <div>
+          <div class="section-label mono">01 / HELLO, WORLD</div>
+          <h2 data-edit-id="about-title">你好，我是 Wave哥。<br>正在学习把想法<br><em>变成作品。</em></h2>
+        </div>
+        <div>
+          <p data-edit-id="about-copy">喜欢 AI、idea 和 active。正在学习用 AI 把想法变成作品，也把每次练习当作下一次尝试的起点。</p>
+          <p data-edit-id="about-copy2">这个主页记录我的 wave 星球：已经完成的练习、正在持续的学习记录，以及还在计划中的下一步。想法很小，也值得拥有自己的轨道。</p>
+          <div class="tags"><span>AI 学习</span><span>idea 实践</span><span>持续探索</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="wrap">
+        <div class="section-label mono">02 / SMALL MISSIONS</div>
+        <div class="section-head">
+          <h2 data-edit-id="projects-title">让想法<br>有一个落点。</h2>
+          <div class="side" data-edit-id="projects-intro">一件本次完成的作品，<br>一份学习记录，和一个计划中的目标。</div>
+        </div>
+        <div class="cards">
+          <article class="card glass">
+            <div class="card-art">
+              <svg viewBox="0 0 280 220" fill="none" aria-hidden="true">
+                <rect x="24" y="37" width="230" height="150" rx="12" fill="#081534" stroke="#7d9fd0"/>
+                <path d="M24 62h230" stroke="#7d9fd0"/>
+                <circle cx="39" cy="50" r="3" fill="#9afc47"/><circle cx="50" cy="50" r="3" fill="#b8cbeb"/><circle cx="61" cy="50" r="3" fill="#b8cbeb"/>
+                <path d="M44 86h70M44 99h58M44 112h66" stroke="#eff4ff" stroke-width="7"/>
+                <rect x="44" y="139" width="65" height="15" rx="7" fill="#9afc47"/>
+                <circle cx="186" cy="120" r="37" fill="#2a72c7"/>
+                <path d="M176 85l18 10 4 17-15 9-11-13-14 7-7-12M198 131l23-6-10 29-16 5-7-13Z" fill="#9afc47"/>
+                <ellipse cx="186" cy="120" rx="51" ry="12" transform="rotate(-30 186 120)" stroke="#b9cdf0"/>
+              </svg>
+            </div>
+            <div class="card-copy">
+              <div class="card-label mono">01 · HOMEPAGE / 本次完成</div>
+              <h3 data-edit-id="project1-title">本次个人主页</h3>
+              <p data-edit-id="project1-copy">完成 Orbis 地球版中文主页：重排首屏、整理作品区、加入手机布局、动效暂停、文字编辑和 HTML 导出。</p>
+            </div>
+            <a class="card-bottom" href="#mission-homepage"><span>查看制作记录</span><b class="circle" aria-hidden="true">↗</b></a>
+          </article>
+
+          <article class="card glass">
+            <div class="card-art">
+              <svg viewBox="0 0 280 220" fill="none" aria-hidden="true">
+                <path d="M60 40l125-12 35 25v130L75 199l-15-20Z" fill="#263d50" stroke="#a2d3c4"/>
+                <path d="M75 56l110-10 18 14v109L75 184Z" fill="#dce8d5"/>
+                <path d="M93 87l82-8M93 106l66-6M93 125l72-7" stroke="#577675" stroke-width="5"/>
+                <path d="M112 151l12 11 25-31" stroke="#48865c" stroke-width="5"/>
+                <circle cx="208" cy="52" r="29" fill="#9afc47"/><path d="M198 53l8 8 14-18" stroke="#12352b" stroke-width="4"/>
+              </svg>
+            </div>
+            <div class="card-copy">
+              <div class="card-label mono">02 · NOTES / 持续记录</div>
+              <h3 data-edit-id="project2-title">学习记录</h3>
+              <p data-edit-id="project2-copy">记录 AI、idea 与 active 的练习，以及这次从模板选择、插画替换到手机适配的修改路径。</p>
+            </div>
+            <a class="card-bottom" href="#mission-notes"><span>查看学习方法</span><b class="circle" aria-hidden="true">↗</b></a>
+          </article>
+
+          <article class="card glass">
+            <div class="card-art">
+              <svg viewBox="0 0 280 220" fill="none" aria-hidden="true">
+                <circle cx="140" cy="106" r="59" fill="#cdd8fa" fill-opacity=".1" stroke="#b6c5f4"/>
+                <ellipse cx="140" cy="106" rx="99" ry="27" transform="rotate(-26 140 106)" stroke="#b6c5f4"/>
+                <path d="M144 51l-24 57h29l-14 50 40-69h-30l16-38Z" fill="#9afc47"/>
+                <circle cx="55" cy="145" r="12" fill="#a6a6e9"/><circle cx="222" cy="63" r="6" fill="#9afc47"/>
+                <path d="M86 192h108" stroke="#8999ca" stroke-dasharray="3 7"/>
+              </svg>
+            </div>
+            <div class="card-copy">
+              <div class="card-label mono">03 · NEXT / 计划中</div>
+              <h3 data-edit-id="project3-title">升级打怪成为 Wave总</h3>
+              <p data-edit-id="project3-copy">这是下一阶段目标，尚未完成。先继续积累练习和作品，再把它变成真实经历。</p>
+            </div>
+            <a class="card-bottom" href="#mission-next"><span>查看下一步</span><b class="circle" aria-hidden="true">↗</b></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section learning" id="learning">
+      <div class="wrap">
+        <div class="section-label mono">03 / FLIGHT LOG</div>
+        <div class="section-head">
+          <h2 data-edit-id="learning-title">每次尝试，<br>都留下一个坐标。</h2>
+          <div class="side" data-edit-id="learning-intro">从本次个人主页开始，<br>记录完成的修改与下一步。</div>
+        </div>
+        <div class="notes">
+          <article class="note detail" id="mission-homepage">
+            <span class="number">01</span>
+            <h3 data-edit-id="note1-title">完成第一版个人主页</h3>
+            <p data-edit-id="note1-copy">整理真实资料，保留 Orbis 地球风格，补充作品、学习记录和计划中的内容，并检查电脑与手机布局。</p>
+          </article>
+          <article class="note detail" id="mission-notes">
+            <span class="number">02</span>
+            <h3 data-edit-id="note2-title">正在持续学习 AI</h3>
+            <p data-edit-id="note2-copy">持续记录 AI、idea 与 active 的练习。每次修改后都实际打开页面，确认导航、按钮和作品入口可以到达。</p>
+          </article>
+          <article class="note detail" id="mission-next">
+            <span class="number">03</span>
+            <h3 data-edit-id="note3-title">计划中：成为 Wave总</h3>
+            <p data-edit-id="note3-copy">这是尚未完成的下一阶段目标，不代表现有经历。先继续学习与积累作品，再打开新的章节。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final">
+      <div class="ring" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="accent">keep exploring.</div>
+        <h2 data-edit-id="final-title">从一个小想法出发，<br>走进更大的世界。</h2>
+        <a class="pill primary" href="mailto:pb_ibyte@163.com">写信给 Wave哥 <span>↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <div>© 2026 Wave哥 · 个人主页<br>公开邮箱：<a href="mailto:pb_ibyte@163.com">pb_ibyte@163.com</a><br>地球与宇航员为课程示例插画，不是真人肖像。</div>
+    <div>Adapted from <a href="https://github.com/shengjidaguai-china/personal-homepage-skill">Personal Homepage Skill</a> by powerycy<br><a href="LICENSE.txt">Orbis NFT Space Landing · LICENSE.txt</a></div>
+  </footer>
+
+  <script>
+    const motion = document.getElementById('motion');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    if (reduced.matches) motion.hidden = true;
+    motion.addEventListener('click', () => {
+      const paused = document.body.classList.toggle('motion-paused');
+      motion.setAttribute('aria-pressed', String(paused));
+      motion.textContent = paused ? '继续动效' : '暂停动效';
+    });
+  </script>
+<!-- html-runtime:start -->
+<style id="html-runtime-style">/* Shared editing chrome; independent of homepage/slide layouts. */
+.html-tools{position:fixed;left:0;top:0;z-index:10000;padding:14px;display:flex;gap:8px;opacity:0;transition:opacity .15s;background:#20212a;border-radius:0 0 12px 0;color:#fff}
+.edit-hotzone{position:fixed;left:0;top:0;width:100px;height:64px;z-index:9999}
+.edit-hotzone:hover+.html-tools,.html-tools:hover,.html-tools:focus-within,body.editing .html-tools{opacity:1}
+.html-tools button{position:static;transform:none;opacity:1;pointer-events:auto;font:600 14px/1.4 'PingFang SC','Microsoft YaHei',sans-serif;color:#fff;background:#343744;border:1px solid #777;padding:8px 12px;border-radius:5px;cursor:pointer}
+.html-tools button:focus-visible{outline:3px solid #ffcc68;outline-offset:3px}
+body.editing [data-edit-id]:not([data-note-for]){outline:2px dashed #ed9857;outline-offset:4px;cursor:text}
+.html-status{position:fixed;bottom:50px;left:24px;z-index:10001;background:#20212a;color:#fff;padding:12px 18px;max-width:min(580px,90vw);font:15px/1.6 'PingFang SC',sans-serif}
+.html-status:empty{display:none}
+[data-note-for]{display:none!important}
+@media(hover:none){.html-tools{opacity:1}}
+@media print{.edit-hotzone,.html-tools,.html-status{display:none!important}}
+@media(prefers-reduced-motion:reduce){.html-tools{transition:none}}
+</style>
+<script id="html-runtime">
+/* Shared runtime. Source of truth: assets/html-runtime.js; inline with bundle-html-runtime.mjs. */
+(() => {
+  'use strict';
+  if (window.HtmlTools) return;
+  const root = document.documentElement;
+  const hotzone = document.createElement('div');
+  hotzone.className = 'edit-hotzone';
+  hotzone.setAttribute('aria-hidden', 'true');
+  const toolbar = document.createElement('div');
+  toolbar.className = 'html-tools';
+  toolbar.innerHTML = '<button class="edit-toggle" aria-pressed="false">编辑</button><button id="exportHtml">导出 HTML</button>';
+  const status = document.createElement('div');
+  status.className = 'html-status'; status.setAttribute('role', 'status');
+  for (const el of [hotzone, toolbar, status]) el.dataset.runtimeGenerated = '';
+  document.body.append(hotzone, toolbar, status);
+  let active = false, warningTimer;
+  const key = (root.dataset.editKey || 'html-edits') + ':' + location.pathname + (root.dataset.editVersion ? ':' + root.dataset.editVersion : '');
+  let saved = {};
+  try { const data = JSON.parse(localStorage.getItem(key) || '{}'); if (data && typeof data === 'object' && !Array.isArray(data)) saved = data; } catch {}
+  const nodes = () => [...document.querySelectorAll('[data-edit-id]')];
+  function notify(text) { status.textContent = text; clearTimeout(warningTimer); warningTimer = setTimeout(() => status.textContent = '', 6000); }
+  function refresh({restore = false} = {}) {
+    const ids = new Set();
+    for (const n of nodes()) {
+      const id = n.dataset.editId;
+      if (!id || ids.has(id)) { notify('编辑 ID 缺失或重复，请先修复页面中的 data-edit-id'); continue; }
+      ids.add(id);
+      if (restore && Object.hasOwn(saved, id) && typeof saved[id] === 'string') n.innerHTML = saved[id];
+      n.contentEditable = String(active && !n.hasAttribute('data-note-for'));
+      n.spellcheck = false;
+    }
+  }
+  function save() {
+    // Retain IDs of temporarily filtered-out items; never map by DOM position.
+    for (const n of nodes()) saved[n.dataset.editId] = n.innerHTML;
+    try { localStorage.setItem(key, JSON.stringify(saved)); }
+    catch { notify('本地保存不可用或空间不足，请导出 HTML 保存修改。'); }
+    document.dispatchEvent(new CustomEvent('html:change'));
+  }
+  function setActive(value) {
+    active = Boolean(value); document.body.classList.toggle('editing', active);
+    toolbar.querySelector('.edit-toggle').textContent = active ? '结束编辑' : '编辑';
+    toolbar.querySelector('.edit-toggle').setAttribute('aria-pressed', String(active));
+    refresh();
+    if (!active) { if (document.activeElement?.closest('[data-edit-id]')) document.activeElement.blur(); save(); }
+  }
+  function exportHTML() {
+    save();
+    const clone = root.cloneNode(true);
+    clone.dataset.editVersion = 'export-' + Date.now() + '-' + Math.random().toString(36).slice(2);
+    clone.querySelector('body').classList.remove('editing');
+    clone.querySelectorAll('[data-runtime-generated]').forEach(n => n.remove());
+    clone.querySelectorAll('[contenteditable]').forEach(n => n.setAttribute('contenteditable', 'false'));
+    document.dispatchEvent(new CustomEvent('html:before-export', {detail: {clone}}));
+    const url = URL.createObjectURL(new Blob(['<!doctype html>\n' + clone.outerHTML], {type:'text/html;charset=utf-8'}));
+    const a = document.createElement('a'); a.href = url;
+    a.download = (root.dataset.exportName || document.title || 'page').replace(/[\\/:*?"<>|]/g, '-') + '.html';
+    a.click(); setTimeout(() => URL.revokeObjectURL(url), 2000);
+  }
+  const isTyping = target => Boolean(target?.closest?.('input,textarea,select,[contenteditable="true"]'));
+  toolbar.querySelector('.edit-toggle').onclick = () => setActive(!active);
+  toolbar.querySelector('#exportHtml').onclick = exportHTML;
+  hotzone.onclick = () => setActive(!active);
+  document.addEventListener('input', e => { if (e.target.closest?.('[data-edit-id]')) save(); });
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's') { e.preventDefault(); save(); return; }
+    if (e.key === 'Escape' && active) { e.preventDefault(); setActive(false); return; }
+    if (e.metaKey || e.ctrlKey || e.altKey || isTyping(e.target)) return;
+    if (e.key.toLowerCase() === 'e') { e.preventDefault(); setActive(!active); }
+  });
+  window.HtmlTools = {save, refresh, setActive, exportHTML, notify, isTyping, toolbar, get active() {return active;}, key};
+  refresh({restore:true});
+})();
+
+</script>
+<!-- html-runtime:end -->
+<style id="runtime-mobile-layout">
+  @media (max-width: 800px) {
+    .html-tools,
+    .edit-hotzone {
+      display: none !important;
+    }
+  }
+</style>
+</body>
+</html>
