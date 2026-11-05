@@ -23,6 +23,8 @@
     .brand svg{width:26px;height:26px;color:var(--neon)}
     .navlinks{display:flex;gap:34px;padding:17px 32px;border-radius:36px;font-size:12px}
     .navlinks a:hover{color:var(--neon)}
+    .navlinks button{appearance:none;border:0;background:none;color:inherit;padding:0;font:inherit;cursor:pointer}
+    .navlinks button:hover{color:var(--neon)}
     .nav-note{font-size:10px;letter-spacing:.14em;color:#becae6}
     .nav-note i,.status i{display:inline-block;background:var(--neon);width:5px;height:5px;border-radius:50%;margin-right:8px}
     .hero{min-height:790px;height:100svh;max-height:950px;position:relative;overflow:hidden;border-radius:0 0 38px 38px;background:radial-gradient(ellipse at 60% 48%,#102556 0,transparent 67%),var(--bg)}
@@ -85,6 +87,43 @@
     .motion-button{background:none;color:#c7d4eb;border:1px solid var(--line);border-radius:20px;padding:7px 12px;cursor:pointer;font-size:10px}
     .motion-paused .hero-art{animation-play-state:paused}
     body.editing .hero-art{animation-play-state:paused}
+    .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+    .danmaku-zone{position:absolute;z-index:2;right:0;top:150px;width:62%;height:calc(100% - 250px);overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent,black 8%,black 88%,transparent);mask-image:linear-gradient(90deg,transparent,black 8%,black 88%,transparent)}
+    .danmaku-state{position:absolute;right:9%;bottom:64px;max-width:250px;margin:0;color:#c1d0e9;font-size:12px;line-height:1.7;text-align:right}
+    .danmaku-item{--lane:0;--duration:22s;position:absolute;top:calc(18% + var(--lane) * 14%);left:100%;display:flex;max-width:430px;align-items:baseline;gap:8px;padding:10px 15px;border:1px solid #ffffff2e;border-radius:999px;background:rgba(5,20,59,.78);color:var(--cream);font-size:13px;line-height:1.35;text-align:left;white-space:nowrap;pointer-events:auto;cursor:pointer;backdrop-filter:blur(10px);animation:danmaku-pass var(--duration) linear 1 both;box-shadow:0 8px 30px #01082866}
+    .danmaku-item strong{color:var(--neon);font-size:11px;font-weight:800}
+    .danmaku-item span{overflow:hidden;max-width:250px;text-overflow:ellipsis}
+    .danmaku-item small{color:#aab9d3;font-size:10px}
+    .danmaku-item:hover,.danmaku-item:focus-visible{animation-play-state:paused}
+    .motion-paused .danmaku-item,.guestbook-dialog-open .danmaku-item{animation-play-state:paused}
+    .danmaku-static{position:relative;top:auto;left:auto;display:flex;margin:0;animation:none;white-space:normal}
+    .danmaku-empty{max-width:270px;margin:0 8% 0 auto;padding:14px 18px;border:1px solid var(--line);border-radius:18px;background:#071537b8;color:#b9c8e2;font-size:12px}
+    .guestbook-dialog{width:min(520px,calc(100% - 32px));max-height:min(760px,calc(100svh - 32px));overflow:auto;border:1px solid #ffffff2d;border-radius:28px;background:#071537f5;color:var(--cream);padding:0;box-shadow:0 25px 100px #0008}
+    .guestbook-dialog::backdrop{background:#010828c7;backdrop-filter:blur(10px)}
+    .guestbook-form{padding:clamp(24px,5vw,38px)}
+    .guestbook-dialog-head{display:flex;align-items:start;justify-content:space-between;gap:20px;margin-bottom:24px}
+    .guestbook-dialog h2{font-size:34px;line-height:1.05;letter-spacing:-.04em;margin:7px 0 0}
+    .guestbook-close{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:none;color:var(--cream);cursor:pointer;font-size:22px}
+    .guestbook-field{display:grid;gap:8px;margin-top:18px}
+    .guestbook-field label{font-size:13px;color:#c7d4e9}
+    .guestbook-field input,.guestbook-field textarea{width:100%;border:1px solid #ffffff2c;border-radius:16px;background:#020b29;color:var(--cream);padding:13px 15px;font:inherit;font-size:15px;outline:none}
+    .guestbook-field input:focus,.guestbook-field textarea:focus{border-color:var(--neon);box-shadow:0 0 0 3px #9afc4726}
+    .guestbook-field textarea{min-height:118px;resize:vertical;line-height:1.7}
+    .guestbook-field-meta{display:flex;justify-content:space-between;gap:12px;color:#94a8c6;font-size:11px}
+    .guestbook-field-meta [data-limit="true"]{color:#ffcc7a}
+    .guestbook-privacy{font-size:11px;line-height:1.8;color:#91a5c4;margin:18px 0}
+    .guestbook-submit{width:100%;border:0;border-radius:50px;background:var(--neon);color:#091422;padding:14px 20px;font-weight:800;cursor:pointer}
+    .guestbook-submit:disabled{opacity:.62;cursor:wait}
+    .guestbook-status{min-height:22px;margin:14px 0 0;font-size:12px;line-height:1.6;color:#aebed7}
+    .guestbook-status[data-kind="error"]{color:#ffb0a8}
+    .guestbook-status[data-kind="success"]{color:var(--neon)}
+    .guestbook-honeypot{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+    .guestbook-detail-body{padding:34px}
+    .guestbook-detail-body h3{font-size:28px;margin:0 0 10px;color:var(--neon)}
+    .guestbook-detail-meta{font-size:12px;color:#9eb1ce;margin:0 0 28px}
+    .guestbook-detail-message{font-size:18px;line-height:1.8;margin:0}
+    .guestbook-toast{position:fixed;z-index:10002;left:50%;bottom:28px;transform:translateX(-50%);border-radius:999px;background:var(--neon);color:#091422;padding:11px 18px;font-size:13px;font-weight:800}
+    @keyframes danmaku-pass{from{transform:translateX(0)}to{transform:translateX(-125vw)}}
     .detail{scroll-margin-top:30px}
     @keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(.7deg)}}
     @media(min-width:1550px){.hero-art{right:0;width:65%}.hero-body{padding-top:85px}}
@@ -96,9 +135,12 @@
       .section{padding:75px 0}.about-grid{gap:40px;grid-template-columns:1fr}.about h2,.section-head h2{font-size:40px}.about h2 em{font-size:52px}
       .cards{grid-template-columns:1fr}.card{display:grid;grid-template-columns:40% 1fr;gap:8px}.card-art{height:210px;grid-row:span 2}.card-copy{padding:12px 12px 0}.card p{min-height:0}.card-bottom{padding:0 12px 10px}
       .section-head{gap:22px}.section-head .side{max-width:200px}.note{grid-template-columns:35px 1fr}.note p{grid-column:2}.learning{padding-top:0}.final h2{font-size:38px}.footer{flex-direction:column}.final .ring{right:-450px}
+      .danmaku-zone{top:430px;right:-10%;width:100%;height:590px}
+      .danmaku-item{max-width:310px;padding:8px 12px;font-size:12px}
+      .danmaku-item span{max-width:170px}
     }
     @media(max-width:480px){
-      .wrap{width:88%}.nav{height:80px}.brand{font-size:12px;gap:7px}.brand svg{width:20px;height:20px}.navlinks{padding:10px 14px;gap:14px}.navlinks a:last-child{display:none}
+      .wrap{width:88%}.nav{height:80px}.brand{font-size:12px;gap:7px}.brand svg{width:20px;height:20px}.navlinks{padding:9px 12px;gap:10px}.navlinks .nav-learning{display:none}
       .hero{min-height:1040px;border-radius:0 0 24px 24px}.hero-body{padding-top:25px}.eyebrow{font-size:9px;letter-spacing:.1em}
       h1{font-size:57px;margin-top:24px;line-height:1.12}.accent{font-size:35px;margin-left:83px}.hero-copy{font-size:13px;line-height:1.8;max-width:300px;margin-top:24px}
       .hero-actions{margin-top:22px;gap:15px}.pill{padding:13px 17px;font-size:11px;gap:15px}.hero-art{top:555px;height:440px;width:122%;right:-15%}
@@ -106,13 +148,22 @@
       .section-head{display:block}.section-head .side{margin-top:20px;max-width:none}.about h2,.section-head h2{font-size:35px}
       .card{display:flex;padding:10px}.card-art{height:265px}.card-copy{padding:22px 12px 14px}.card h3{font-size:21px}.card p{font-size:13px}.card-bottom{padding-bottom:10px}
       .note h3{font-size:17px}.final h2{font-size:33px}.final .wrap{padding-top:65px}.final .accent{font-size:39px}
+      .danmaku-zone{top:555px;right:-24%;width:124%;height:440px}
+      .danmaku-item{top:calc(15% + var(--lane) * 24%);max-width:250px;padding:7px 11px;font-size:11px;gap:6px}
+      .danmaku-item strong{font-size:10px}.danmaku-item span{max-width:128px}.danmaku-item small{display:block;font-size:9px}
+      .danmaku-static{margin:0 auto 8px}.danmaku-zone:has(.danmaku-static){display:grid;align-content:end;gap:7px;padding:0 24px 18px;mask-image:none;-webkit-mask-image:none}
+      .guestbook-form{padding:24px 20px 22px}.guestbook-dialog h2{font-size:30px}
     }
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.danmaku-zone{right:0;top:430px;width:100%;height:570px;display:grid;align-content:end;gap:8px;padding:0 8%;mask-image:none;-webkit-mask-image:none}.danmaku-item{position:relative;top:auto;left:auto;margin:0;animation:none;white-space:normal}.danmaku-state{right:8%;bottom:24px}.danmaku-static{display:flex}}
   </style>
 </head>
 <body>
   <section class="hero" id="home">
     <img class="hero-art" src="assets/earth-astronaut.png" alt="原创地球与宇航员插画">
+    <div class="danmaku-zone" id="danmaku-zone" aria-hidden="true">
+      <p class="danmaku-state" id="danmaku-state">正在连接 wave 星球…</p>
+    </div>
+    <ul class="sr-only" id="guestbook-readable-list" aria-label="最新公开留言"></ul>
     <div class="wrap">
       <header class="nav">
         <a class="brand" href="#home" aria-label="Wave哥主页">
@@ -126,7 +177,8 @@
         <nav class="navlinks glass" aria-label="主导航">
           <a href="#about">关于我</a>
           <a href="#projects">作品</a>
-          <a href="#learning">学习记录</a>
+          <a class="nav-learning" href="#learning">学习记录</a>
+          <button type="button" data-guestbook-open>留言</button>
         </nav>
         <span class="nav-note mono"><i></i>OPEN TO DISCOVERY</span>
       </header>
@@ -267,11 +319,51 @@
     </section>
   </main>
 
+  <dialog class="guestbook-dialog" id="guestbook-dialog" aria-labelledby="guestbook-title">
+    <form class="guestbook-form" id="guestbook-form" novalidate>
+      <div class="guestbook-dialog-head">
+        <div>
+          <div class="section-label mono">LEAVE A SIGNAL</div>
+          <h2 id="guestbook-title">给星球留一句话</h2>
+        </div>
+        <button class="guestbook-close" id="guestbook-close" type="button" aria-label="关闭留言框">×</button>
+      </div>
+      <div class="guestbook-field">
+        <label for="guestbook-nickname">你的昵称</label>
+        <input id="guestbook-nickname" name="nickname" maxlength="20" autocomplete="nickname" placeholder="怎么称呼你？" required>
+      </div>
+      <div class="guestbook-field">
+        <label for="guestbook-message">想说的话</label>
+        <textarea id="guestbook-message" name="message" maxlength="80" placeholder="留一句简短的话，让它从星球上飘过。" required></textarea>
+        <div class="guestbook-field-meta"><span>留言会立即公开</span><span id="guestbook-count">0 / 80</span></div>
+      </div>
+      <div class="guestbook-honeypot" aria-hidden="true">
+        <label for="guestbook-website">网站</label>
+        <input id="guestbook-website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <p class="guestbook-privacy">留言将公开显示。服务器会短暂处理访客 IP，仅公开估算的国家与省份，不保存或展示完整 IP；请勿填写敏感信息。</p>
+      <button class="guestbook-submit" id="guestbook-submit" type="submit">让留言起飞</button>
+      <p class="guestbook-status" id="guestbook-status" role="status" aria-live="polite"></p>
+    </form>
+  </dialog>
+
+  <dialog class="guestbook-dialog" id="guestbook-detail" aria-label="完整留言">
+    <div class="guestbook-detail-body" id="guestbook-detail-body"></div>
+    <div class="guestbook-form">
+      <button class="guestbook-close" id="guestbook-detail-close" type="button" aria-label="关闭留言详情">×</button>
+    </div>
+  </dialog>
+
+  <div class="guestbook-toast" id="guestbook-toast" role="status" aria-live="polite" hidden></div>
+
   <footer class="footer wrap">
     <div>© 2026 Wave哥 · 个人主页<br>公开邮箱：<a href="mailto:pb_ibyte@163.com">pb_ibyte@163.com</a><br>地球与宇航员为课程示例插画，不是真人肖像。</div>
     <div>Adapted from <a href="https://github.com/shengjidaguai-china/personal-homepage-skill">Personal Homepage Skill</a> by powerycy<br><a href="LICENSE.txt">Orbis NFT Space Landing · LICENSE.txt</a></div>
   </footer>
 
+  <script src="assets/supabase-js.js"></script>
+  <script src="assets/guestbook-config.js"></script>
+  <script src="assets/guestbook.js"></script>
   <script>
     const motion = document.getElementById('motion');
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');

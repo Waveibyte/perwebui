@@ -1,0 +1,25 @@
+name: Supabase guestbook keepalive
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Read one public guestbook row
+        env:
+          SUPABASE_URL: https://kmoigtuqalryikxexbam.supabase.co
+          PUBLISHABLE_KEY: sb_publishable_eK_iFV62e-qskrUbAq14ZQ_-PMG62BB
+        run: |
+          curl --fail --silent --show-error \
+            "${SUPABASE_URL}/rest/v1/guestbook_messages?select=id&limit=1" \
+            -H "apikey: ${PUBLISHABLE_KEY}" \
+            -H "Authorization: Bearer ${PUBLISHABLE_KEY}" \
+            > /dev/null
