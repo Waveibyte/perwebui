@@ -164,3 +164,25 @@ begin
   end if;
 end;
 $$;
+
+create extension if not exists pg_cron with schema extensions;
+
+do $$
+declare
+  existing_job_id bigint;
+begin
+  select jobid into existing_job_id
+  from cron.job
+  where jobname = 'guestbook-rate-cleanup';
+
+  if existing_job_id is not null then
+    perform cron.unschedule(existing_job_id);
+  end if;
+
+  perform cron.schedule(
+    'guestbook-rate-cleanup',
+    '27 3 * * *',
+    $cron$delete from public.guestbook_rate_events where created_at < now() - interval '24 hours';$cron$
+  );
+end;
+$$;
