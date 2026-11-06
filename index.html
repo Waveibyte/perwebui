@@ -84,7 +84,11 @@
     .final .ring:after{content:"";position:absolute;top:135px;left:45px;width:23px;height:23px;border-radius:50%;background:var(--neon);box-shadow:0 0 30px #9afc4770}
     .footer{padding:30px 0 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:25px;color:#8899b8;font-size:10px;line-height:1.8}
     .footer a{text-decoration:underline;text-underline-offset:3px}
-    .motion-button{background:none;color:#c7d4eb;border:1px solid var(--line);border-radius:20px;padding:7px 12px;cursor:pointer;font-size:10px}
+    .hero-controls{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+    .music-button,.motion-button{background:none;color:#c7d4eb;border:1px solid var(--line);border-radius:20px;padding:7px 12px;cursor:pointer;font-size:10px;white-space:nowrap}
+    .music-button[data-state="playing"]{color:var(--neon);border-color:#9afc4773}
+    .music-button[data-state="unavailable"]{color:#ffb0a8;border-color:#ffb0a866}
+    .background-music{display:none}
     .motion-paused .hero-art{animation-play-state:paused}
     body.editing .hero-art{animation-play-state:paused}
     .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
@@ -158,6 +162,7 @@
   </style>
 </head>
 <body>
+  <audio class="background-music" id="background-music" src="assets/background-music.mp3" preload="auto" loop playsinline aria-hidden="true" tabindex="-1"></audio>
   <section class="hero" id="home">
     <img class="hero-art" src="assets/earth-astronaut.png" alt="原创地球与宇航员插画">
     <div class="danmaku-zone" id="danmaku-zone" aria-hidden="true">
@@ -195,7 +200,7 @@
     </div>
     <div class="hero-bottom">
       <div><div class="line"></div><p class="mono">PERSONAL ORBIT / WAVE</p></div>
-      <div class="coordinate mono"><span>SCROLL TO EXPLORE ↓</span><button class="motion-button" id="motion" type="button" aria-pressed="false">暂停动效</button></div>
+      <div class="coordinate mono"><span>SCROLL TO EXPLORE ↓</span><div class="hero-controls"><button class="music-button" id="music" type="button" aria-pressed="false" aria-label="播放背景音乐" data-state="loading">♪ 音乐加载中</button><button class="motion-button" id="motion" type="button" aria-pressed="false">暂停动效</button></div></div>
     </div>
   </section>
 
@@ -365,6 +370,7 @@
   <script src="assets/supabase-js.js"></script>
   <script src="assets/guestbook-config.js"></script>
   <script src="assets/guestbook.js"></script>
+  <script src="assets/background-music.js"></script>
   <script>
     const motion = document.getElementById('motion');
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
