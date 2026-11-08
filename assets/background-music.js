@@ -19,6 +19,7 @@
       loading: { text: "♪ 音乐加载中", label: "背景音乐正在加载", pressed: false },
       playing: { text: "♪ 暂停音乐", label: "暂停背景音乐", pressed: true },
       paused: { text: "♪ 播放音乐", label: "播放背景音乐", pressed: false },
+      blocked: { text: "♪ 点击开启音乐", label: "浏览器已阻止自动播放，点击开启背景音乐", pressed: false },
       unavailable: { text: "音乐不可用", label: "背景音乐加载失败", pressed: false }
     };
     const next = states[state] || states.paused;
@@ -56,7 +57,7 @@
 
   const removeGestureFallback = () => {
     if (!gestureHandler) return;
-    document.removeEventListener("click", gestureHandler);
+    document.removeEventListener("pointerdown", gestureHandler);
     document.removeEventListener("keydown", gestureHandler);
     document.removeEventListener("touchend", gestureHandler);
     gestureHandler = null;
@@ -70,7 +71,7 @@
       removeGestureFallback();
       void playMusic();
     };
-    document.addEventListener("click", gestureHandler);
+    document.addEventListener("pointerdown", gestureHandler);
     document.addEventListener("keydown", gestureHandler);
     document.addEventListener("touchend", gestureHandler);
   };
@@ -93,7 +94,7 @@
     } catch (error) {
       if (attempt !== playbackAttempt || !intendedPlaying) return;
       if (error?.name === "NotAllowedError") {
-        renderState("paused");
+        renderState("blocked");
         armGestureFallback();
         return;
       }
